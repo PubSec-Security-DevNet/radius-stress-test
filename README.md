@@ -1,0 +1,6 @@
+## RADIUS Stress Test
+This Docker container provides a straightforward method for performing a RADIUS stress test. Upon deployment, it installs the most recent version of the Alpine Linux operating system along with the WPA Supplicant package, which includes the eapol_test utility. The eapol_test is specifically engineered to execute a single RADIUS EAP authentication challenge with a RADIUS server.
+
+For load testing purposes, the eapol_test is invoked using an ash shell script, which triggers multiple instances of the eapol_test based on configurations set within the radius.sh file. These tests will persist until the Docker container is manually stopped.
+
+By default, the container is configured to attempt EAP PEAP with MS-CHAPv2 authentication. It's important to note that there is no internal logging or indication that the eapol_test is running, other than the authentication attempts observed on your RADIUS server.  This is to try and make the container as efficient as possible to increase the number of auth's per second it can handle. 
